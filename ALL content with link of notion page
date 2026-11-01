@@ -1,0 +1,239 @@
+https://app.notion.com/p/Find-your-STM-3c3f577a2ae880ee9f5fdafae7580fce?source=copy_link
+
+
+### Project view
+
+1. Different-Different Filters required
+    1. No. of pins
+    2. no. of IO pins
+    3. Price
+        1. Should be in a category like low, medium, high
+    4. Availability
+        1. like in India on sights like robu, ktron etc
+        2. world wide: digikey, mouser
+    5. Architecture
+        1. like: cortex: M4, cortex: M33
+        2. With Frequency: like 170MHz
+    6. Communication protocols
+        1. Wired: UART, SPI etc.
+        2. Wireless: Wi-Fi, BLE
+    7. Support 
+        1. for how much time company support will available
+    8. Spacial features
+        1. Firmware secuirty
+        2. ADC bits
+        3. DAC etc.
+2. Research
+    
+    #### What are the current method is used for STM selection
+    
+    #### List all the methods and take inspiration from them
+    
+    #### Get the sources of all the information about the STM
+    
+    1. How we will get the list of the microcontrollers with its specifications 
+    2. In long term we need api to update the prices and all 
+3. Development
+    1. Create a web application to solve this problem
+4. Problem statement 
+    1. 
+
+# **PROBLEM STATEMENT**
+
+Selecting an STM32 MCU or development board is a tedious process due to hundreds of active variants (C0–H7, WB/WL, MP1/MP2) and disparate evaluation metrics:   
+
+1. **Disconnected Tools:** Official parametric lookup tools (e.g., **ST MCU Finder**) filter only by technical specs and lack real-time distributor inventory or pricing.   
+2. **Local Sourcing Gaps:** Indian developers must manually check domestic stores (Robu.in, Ktron) alongside global distributors (DigiKey, Mouser) to verify stock.   
+  
+**This platform is a dynamic solution to find the right STM32 MCU for specific requirements, unifying technical specs, board mapping, official ST longevity data, and live inventory and pricing from both global and local Indian vendors into one parametric search system.**   
+
+# Classification of STM32 Microcontrollers
+
+STM32 microcontrollers are categorized by performance, peripherals, and power consumption:
+
+## 1.Based on families
+
+**F** : original 90 nm 
+
+**L** : low power series , 90 nm 
+
+**U** : low power and performance , only U5 , 40 nm 
+
+**H** : high performance , 40 nm 
+
+**G** : budget series , 90 nm 
+
+**C** : ultra low cost , only C0 is available , 90nm  
+
+**W** : suitable for wireless , BLE , Zigbee , THread and long range version with LoRaWan
+
+**MP** series : Microprocessores  
+
+## 2.Based on cortex
+
+**Arm Cortex** is a line of 32-bit and 64-bit RISC processor cores designed by **Arm Ltd.** Instead of manufacturing actual physical silicon chips directly, Arm licenses these core designs to semiconductor manufacturers—such as STMicroelectronics, NXP, Texas Instruments, and Qualcomm—who build them into microcontrollers (MCUs) and System-on-Chips (SoCs).
+
+**1. Ultra-Low Power & Entry-Level Cores
+
+Cortex-M0 / Cortex-M0+**
+• **Role:** Cost minimization, basic control, and ultra-low power consumption.   
+• **Primary Use Case:** Simple sensor reading, replacing legacy 8-bit or 16-bit microcontrollers, and energy-harvesting IoT nodes.    
+• **STM32 Families:** **STM32C0** (entry 8-bit bridge), **STM32F0**, **STM32G0**, **STM32L0**
+
+-**Overall: low cost** 
+
+**2. Mainstream & General Purpose Cores
+
+Cortex-M3**
+• **Role:** Standard 32-bit general-purpose computing balance.   
+• **Primary Use Case:** Everyday industrial control, consumer products, and general-purpose embedded applications.   
+• **Key Hardware Features:** Harvard architecture, hardware division, bit-banding operations, and 3-stage pipeline.
+• **STM32 Families:** **STM32F1** (ubiquitous "Blue Pill" core), **STM32L1**.   
+
+**Overall: mid point between cost and performance** 
+
+**Cortex-M4 / M4 +** 
+• **Role:** Digital Signal Processing (DSP) and high-speed mixed-signal operations.   
+• **Primary Use Case:** Motor control, digital power conversion, audio processing, drone flight stabilization, and RTOS setups.   
+• **Key Hardware Features:** Single-cycle MAC (Multiply-Accumulate), SIMD instructions, and optional single-precision **Floating Point Unit (FPU)**.   
+• **STM32 Families:** **STM32F3**, **STM32F4**, **STM32G4** (mixed-signal/analog), **STM32L4 / L4+**
+
+-**Overall: Dedicated DSP , higher max clock frequencies , M4+ ones have a dedicated FPU**
+
+**3. High-Performance & Advanced Real-Time Cores
+Cortex-M7**
+• **Role:** Maximum scalar processing performance, high-speed data handling, and graphics driving.   
+• **Primary Use Case:** TFT-LCD screen driving, high-end audio codecs, advanced edge algorithms, and complex industrial control loops.   
+• **Key Hardware Features:** Dual-issue 6-stage pipeline, Double-Precision FPU (DP-FPU), L1 Cache (Instruction & Data cache), and Flexible External Memory Interfaces (FMC).   
+• **STM32 Families:** **STM32F7**, **STM32H7** (clock speeds up to 550+ MHz).   
+
+**4. Hardware Security & Next-Gen Architecture Cores
+Cortex-M33**
+• **Role:** Secure processing, cryptographic protection, and modern low-power architecture.   
+• **Primary Use Case:** Connected IoT nodes requiring secure boot, encrypted firmware updates, and isolated execution zones.   
+• **Key Hardware Features:** **ARM TrustZone** technology (hardware-enforced isolation between Secure and Non-Secure software states), DSP, FPU, and enhanced Memory Protection Unit (MPU).   
+• **STM32 Families:** **STM32H5**, **STM32L5**, **STM32U5**, **STM32MP2** (real-time sub-core).  
+
+-**Overall: Enhanced security features , FPU .**
+
+**5. Application & Heterogeneous Cores (MPUs & Specialized)
+Cortex-A7 / Cortex-A35 (Application Profile)**
+• **Role:** High-level operating system execution (Embedded Linux/Yocto).   
+• **Primary Use Case:** Rich Graphical User Interfaces (GUIs), gateway routers, and multi-threaded edge processing.   
+• **Key Hardware Features:** Memory Management Unit (MMU) for virtual memory support, multi-core processing, L2 cache, and NEON SIMD engine.   
+• **STM32 Families:** **STM32MP1** (Dual Cortex-A7 + Cortex-M4), **STM32MP2** (64-bit Dual Cortex-A35 + Cortex-M33)
+
+-**Overall: High clock speed, Cache, DP-FPU , ueseful for Displays, high data-rate edge tasks**
+
+## **3.Based on use case**
+
+**1. Mainstream Series (STM32F0, F1, F3, G0, G4):** General-purpose microcontrollers widely used in cost-sensitive applications. The **STM32F103C8T6** (found on the popular "Blue Pill" board) belongs to this tier.
+
+Entry-level and general-purpose 32-bit controllers designed for cost-sensitive, high-volume consumer and industrial applications.
+
+- **STM32C0:** Ultra-low-cost Cortex-M0+ series acting as a 32-bit bridge for traditional 8-bit or 16-bit designs.
+- **STM32F0 / F1 / F3:** Standard Cortex-M0, M3, and M4 series. Includes the ubiquitous **STM32F103** ("Blue Pill").
+- **STM32G0 / G4:** Next-generation mainstream series based on Cortex-M0+ and Cortex-M4 with rich mixed-signal capabilities (fast ADCs, op-amps, comparators).
+
+**2.High-Performance Series (STM32F4, F7, H7):**
+
+High clock speeds (up to 480 MHz+), hardware Floating Point Units (FPU), DSP instructions, and rich memory setups for signal processing, display driving, and real-time control.
+
+Built for complex control loops, graphics acceleration, digital signal processing (DSP), and real-time edge computing.
+
+- **STM32F2 / F4 / F7:** High clock frequencies, single-precision Floating Point Units (FPUs), DSP instructions, Ethernet, and camera interfaces.
+- **STM32H5 / H7:** Extremely fast (up to 600 MHz+), incorporating Cortex-M33 / Cortex-M7 cores with TrustZone security and advanced graphics pipelines.
+- **STM32N6:** Specialized High-Performance line featuring an integrated **Neural Processing Unit (NPU)** for Edge AI and computer vision workloads.
+
+**3.Ultra-Low-Power Series (STM32L0, L1, L4, U5):** Designed for battery-operated devices requiring sub-microampere standby currents.
+
+Engineered for wearables, remote sensors, and energy-harvesting IoT devices requiring sub-microampere standby currents.
+
+- **STM32L0 / L1 / L4 / L5:** Low-power Cortex-M0+, M3, M4, and M33 MCUs with flexible low-power modes and fast wakeup times.
+- **STM32U0 / U3 / U5:** Latest-generation ultra-low-power family offering enhanced security and optimized dynamic energy consumption (as low as tens of µA/MHz).
+
+**4.Wireless & Dual-Core (STM32WB, WL):**
+
+Integrated Bluetooth Low Energy (BLE), Zigbee, or LoRa radios directly on-chip.
+
+Dual-core or single-core MCUs with built-in radio transceivers directly on the silicon.
+
+- **STM32WB / WB0:** Integrated **Bluetooth Low Energy (BLE 5.x)** and IEEE 802.15.4 (Zigbee / Thread) radios.
+- **STM32WL:** Integrated **Sub-GHz radio** supporting LoRa, Sigfox, and proprietary long-range modulation schemes.
+
+**5.MPU Series (STM32MP1, MP2):**
+
+Dual Arm Cortex-A cores running Embedded Linux combined with a Cortex-M core for real-time tasks.
+
+# **What are the current method is used for STM selection**
+
+**Official Web App: STMicroelectronics STM32 MCU Product Selector**
+
+**Instead of manually reading hundreds of datasheets, you can apply strict dynamic filters:**
+
+- **Core & Architecture: Filter by Cortex-M0+, M3, M4, M7, M33, or Cortex-A cores.**
+- **Clock & Performance:** Operating frequency (MHz) and CoreMark performance benchmark scores.
+    
+    **Memory Sizes:** Exact minimum/maximum Flash memory (KB/MB) and SRAM requirements.
+    
+- **Peripherals & Interfaces: Exact counts of SPI, I2C, USART/UART, CAN FD, USB OTG, Ethernet MAC, and SDIO controllers.**
+- **Analog Capabilities: Number of 12-bit/16-bit ADC channels, DACs, internal Op-Amps, and fast comparators.**
+- **Operating Voltage & Temperature: Ultra-low voltage ranges (e.g., 1.71V–3.6V) and industrial/automotive temperature grades.**
+- **Packages & Footprints: LQFP, BGA, QFN, or WLCSP pin counts and physical dimensions.**
+- **Side-by-Side Comparison : Select multiple candidate MCUs and compare their datasheets, block diagrams, pinouts, and hardware differences in a tabular view**
+- **Hardware Board Cross-Referencing : Links each selected MCU directly to its compatible Nucleo, Discovery, or Eval development boards so you can immediately find hardware to prototype on.**
+- **CAD & Software Asset Access : Instantly download datasheets, reference manuals, pinout diagrams, BSDL files, and 3D CAD models directly from the selected part's detail panel.**
+
+# **ONE SOURCE FOR PRICE COMPARISON**
+
+**Octopart** is a specialized search engine for electronic components (owned by Altium) that aggregates data from hundreds of global distributors like Mouser, DigiKey, and Element14 into a single interface.
+
+### **Key Capabilities**
+
+- **Real-Time Sourcing: Compare live inventory, lead times, and tiered volume pricing side-by-side across authorized suppliers.**
+- **BOM Tool: Upload a full Excel/CSV Bill of Materials to automatically calculate total project costs, match part numbers, and spot out-of-stock items.**
+- **CAD & Technical Data: Instantly access datasheets, compliance info (RoHS/REACH), footprint models, and 3D CAD files.**
+- **ECAD Integration: Connects directly into PCB software like Altium Designer to verify component availability while drawing schematics.**
+
+**Link :**
+
+https://octopart.com/search?autosugg_idx=test&currency=INR&specs=0&full_query=stm+32+l010rb+board+&q=stm+32+l010rb+board&nq=stm+32+l010rb+board&s=1&inference=1&query_type=MPN
+
+# HOBBYIEST SELECTION CRITERIA
+
+1.available development boards 
+2. Available tutorials on common sensors 
+3. Available C libraries for coding 
+4. breadboard friendly designs 
+5. Datasheet availability 
+6. included ST Link 
+
+# PRO SELECTION CRITERIA
+
+1. available ICs
+2. Easier packages for hand soldering  
+   eg. LQFP (Low-Profile Quad Flat Package) packages 
+
+!image.png
+
+3.Over the Air updates available 
+4.Register-level access, STM32Cube Low-Layer (LL) drivers, and HAL API references.
+5.External debugging support via SWD/JTAG (standalone ST-LINK/V3, Segger J-Link).
+
+# Industry Application Mode
+
+**industrial automation, automotive, medical, and mission-critical commercial products** that demand extreme reliability, compliance, long-term availability, and harsh-environment operational guarantees.
+
+## Thermal, Electrical & Environmental Limits
+
+Power supply operating ranges, low-power modes
+
+## Advanced Hardware & Safety Features:
+
+**Brown-Out Reset (BOR), Clock Security System (CSS) ,Secure Boot, Secure Firmware Update (SFU)**
+
+## **Mass Manufacturing & Supply Chain Lifecycle:**
+
+Guaranteed **10-year or 15-year Longevity Commitment** directly from manufacturers (e.g., ST Longevity Commitment program).
+
+Package options for automated SMT assembly: Tape & Reel, Tray packaging, high-density WLCSP, UFBGA, and leadless QFN formats.  (to be researched )
